@@ -1,0 +1,11 @@
+ul li{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.buttons button {
+    margin: 5px;
+}

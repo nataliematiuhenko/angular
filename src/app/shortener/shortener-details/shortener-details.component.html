@@ -1,0 +1,14 @@
+<div class="details-header">
+    <h1>{{this.short.name}}</h1>
+    <button (click)="onDelete()">Delete</button>
+    <button (click)="goBack()">Back</button>
+</div>
+
+<ul>
+    
+    <li>Original Link: <a href= {{this.short.original_link}}></a></li>
+    <li>Share Link: {{this.short.share_link}}</li>
+    <li>Short Link: {{this.short.short_link}}</li>
+    <li>Short Link-2: {{this.short.short_link2}}</li>
+
+</ul>

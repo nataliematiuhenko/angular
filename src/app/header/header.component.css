@@ -1,0 +1,13 @@
+header {
+    background-color: teal;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+ 
+  nav a {
+    color: #fff;
+    margin-right: 7px;
+}
