@@ -43,7 +43,7 @@ export class ShortenerComponent implements OnInit {
 
       this.storageService.saveShortening(response.result);
       this.updateShortenings();
-      console.log(this.storageService.getSingleShortening(response.result.id))
+      console.log(this.storageService.getSingleShortening(+response.result.id))
     });
 
   }
