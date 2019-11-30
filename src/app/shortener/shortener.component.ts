@@ -39,7 +39,7 @@ export class ShortenerComponent implements OnInit {
 
     this.shortAPI.shortenUrl(this.url).subscribe((response) => {
       response.result.name = shortName;
-      response.result.id = new Date().getTime();
+      response.result.id = new Date().getTime().toString();
 
       this.storageService.saveShortening(response.result);
       this.updateShortenings();
@@ -47,16 +47,11 @@ export class ShortenerComponent implements OnInit {
 
   }
 
-  // onView(id: number) {
-  //   let chosen = this.shortenings.find(el => el.id); 
-  //   console.log(chosen);
-  // }
-
   onDelete(id : number) {
     
     if (confirm("Do you really want to delete this shortening ?")) {
       let requestedItem = this.shortenings.find(el => el.id);
-      this.storageService.deleteItem(requestedItem.id);
+      this.storageService.deleteItem(+requestedItem.id);
       this.updateShortenings();
     }
   }

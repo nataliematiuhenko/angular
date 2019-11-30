@@ -1,0 +1,8 @@
+.page-layout {
+    margin: 10px auto;
+}
+.form-container {
+    box-shadow: 0 0 5px 5px lightgray; 
+    width: 50%;
+    padding: 10px;
+}

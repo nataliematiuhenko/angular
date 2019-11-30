@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Shortening } from './models/shortening-response.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class StorageService {
   shortenings: Shortening[] = [];
 
@@ -28,17 +30,19 @@ export class StorageService {
       return [];
     }
   }
-  getSingleShortening(id: number): Shortening {
-    return this.getShortenings().filter(item => item.id === id)[0];
+  
+  getSingleShortening(shortId: number): Observable<Shortening> {
+    return (this.shortenings.find(i => +i.id == shortId));
+    
   }
-
+  
+  
   updateStorage(shortenings: Shortening[]): void {
-    localStorage.setItem('shortenings', JSON.stringify(shortenings));
-
+    localStorage.setItem("shortenings", JSON.stringify(shortenings));
   }
 
-  deleteItem(deleteId: number): void {
-    this.shortenings = this.shortenings.filter(item => item.id != deleteId);
+  deleteItem(id: number): void {
+    this.shortenings = this.shortenings.filter(item => +item.id != id);
     this.updateStorage(this.shortenings);
   }
 }

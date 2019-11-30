@@ -9,3 +9,7 @@ ul li{
 .buttons button {
     margin: 5px;
 }
+
+input {
+    margin:0 10px 10px 0;
+}

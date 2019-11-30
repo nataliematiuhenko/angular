@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Shortening } from '../../models/shortening-response.interface';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { Router, ActivatedRoute} from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { StorageService } from 'src/app/storage.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,33 +11,38 @@ import { StorageService } from 'src/app/storage.service';
   templateUrl: './shortener-details.component.html',
   styleUrls: ['./shortener-details.component.css'],
   providers: [Location, {provide: LocationStrategy, useClass: PathLocationStrategy}]
-
 })
+
 export class ShortenerDetailsComponent implements OnInit {
-
-  @Input() shortening: Shortening[];
   
-
-
-  constructor( private location: Location,
-    private _router: Router,
-    private route: ActivatedRoute,
-    private storageService: StorageService
-    ) { 
-      this.id = this.route.snapshot.paramMap.get("id");
-      this.shortening = this.storageService.getSingleShortening(this.id);
-    }
-
+  @Input() shortening: Shortening;
+  id: string;
+  short: Object;
     
+  constructor ( private location: Location,
+                private activatedRoute: ActivatedRoute,
+                private storageService: StorageService,
+  ) { }
+
+  onDelete(id : string) {
+  
+    if (confirm("Do you really want to delete this shortening ?")) {
+       this.storageService.deleteItem(+id);
+      this.goBack();
+    }
+  }
+  
   goBack() {
     this.location.back();
   }
 
 
   ngOnInit() {
-    console.log(
-    this.storageService.getSingleShortening(this.shortening.id)
-    );
+    let shortId = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(shortId);
+    this.short = this.storageService.getSingleShortening(+shortId);
+    console.log("this shortenForm is:" + this.short);
+
   }
 }
 

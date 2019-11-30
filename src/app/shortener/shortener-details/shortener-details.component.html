@@ -1,14 +1,18 @@
-<div class="details-header">
-    <h1>{{this.short.name}}</h1>
-    <button (click)="onDelete()">Delete</button>
-    <button (click)="goBack()">Back</button>
-</div>
-
-<ul>
+<div class="page-layout">
+    <div class="form-container">
+        <div class="details-header">
+            <h1>{{this.short.name}}</h1>
+            <button (click)="onDelete()">Delete</button>
+            <button (click)="goBack()">Back</button>
+        </div>
     
-    <li>Original Link: <a href= {{this.short.original_link}}></a></li>
-    <li>Share Link: {{this.short.share_link}}</li>
-    <li>Short Link: {{this.short.short_link}}</li>
-    <li>Short Link-2: {{this.short.short_link2}}</li>
-
-</ul>
+        <ul>
+            
+            <li>Original Link: <a href= {{this.short.original_link}}>{{this.short.original_link}}</a></li>
+            <li>Share Link: <a href= {{this.short.share_link}}>{{this.short.share_link}}</a></li>
+            <li>Short Link: <a href=  {{this.short.short_link}}> {{this.short.short_link}}</a></li>
+            <li>Short Link-2: <a href= {{this.short.short_link2}}>{{this.short.short_link2}}</a></li>
+    
+        </ul>
+    </div>
+</div>
