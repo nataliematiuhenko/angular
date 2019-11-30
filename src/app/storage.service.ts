@@ -31,9 +31,16 @@ export class StorageService {
     }
   }
   
+<<<<<<< HEAD
   getSingleShortening(shortId: number): Observable<Shortening> {
     return (this.shortenings.find(i => +i.id == shortId));
     
+=======
+  getSingleShortening(id: string): Shortening {
+    console.log(this.shortenings.find(i => i.id))
+    // this.getShortenings().filter(item => item.id === id)[0];
+    return this.shortenings.find(i => i.id);
+>>>>>>> 5faa4ebcd1a016409a9307890ac38a64ae8513d1
   }
   
   
