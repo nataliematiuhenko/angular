@@ -15,28 +15,37 @@ import { StorageService } from 'src/app/storage.service';
 export class ShortenerDetailsComponent implements OnInit {
 
   @Input() shortening: Shortening[];
+  id: string;
   
-
-
   constructor( private location: Location,
     private _router: Router,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private storageService: StorageService
-    ) { 
-      this.id = this.route.snapshot.paramMap.get("id");
-      this.shortening = this.storageService.getSingleShortening(this.id);
-    }
+    ) { }
 
-    
+  private getSpecificShort() {
+    this.id = this.activatedRoute.snapshot.paramMap.get("id");
+    const short: Shortening = this.storageService.getSingleShortening(this.id);
+  }
+
+  short  = this.getSpecificShort();
+
+  onDelete(id : number) {
+  
+    if (confirm("Do you really want to delete this shortening ?")) {
+      let requestedItem = this.short;
+      this.storageService.deleteItem(+requestedItem.id);
+      this.goBack();
+    }
+  }
+  
   goBack() {
     this.location.back();
   }
 
 
   ngOnInit() {
-    console.log(
-    this.storageService.getSingleShortening(this.shortening.id)
-    );
+   
   }
 }
 

@@ -13,7 +13,7 @@
   <li *ngFor="let short of shortenings" class="card">
       {{ short.name }}
     <div class="buttons">
-      <button routerLink ='/shortener/:{{short.id}}' (click)="onView()">View details</button>
+      <button routerLink ='/shortener/{{short.id}}'>View details</button>
       <button (click)="onDelete()">Delete</button>
     </div>
   </li>

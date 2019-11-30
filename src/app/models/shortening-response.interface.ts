@@ -6,7 +6,7 @@ export interface ShorteningResponse {
   export interface Shortening {
     name: string;
     code: string;
-    id: number;
+    id: string;
     short_link: string;
     full_short_link: string;
     short_link2: string;
