@@ -32,8 +32,7 @@ export class StorageService {
   }
   
   getSingleShortening(shortId: number): Observable<Shortening> {
-    return (this.shortenings.find(i => +i.id == shortId));
-    
+    return this.shortenings.find(i => +i.id == shortId);
   }
   
   
@@ -41,8 +40,9 @@ export class StorageService {
     localStorage.setItem("shortenings", JSON.stringify(shortenings));
   }
 
-  deleteItem(id: number): void {
-    this.shortenings = this.shortenings.filter(item => +item.id != id);
+  deleteItem(shortId: string): void{
+    let index = this.shortenings.indexOf(this.shortenings.find(i => i.id == shortId))
+    this.shortenings.splice(index,1);
     this.updateStorage(this.shortenings);
   }
 }

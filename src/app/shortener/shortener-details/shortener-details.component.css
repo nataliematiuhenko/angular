@@ -1,8 +1,25 @@
 .page-layout {
-    margin: 10px auto;
+    margin: 20px;
+
 }
 .form-container {
     box-shadow: 0 0 5px 5px lightgray; 
     width: 50%;
     padding: 10px;
+    line-height: 2rem;
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    margin-right: 3px;
+}
+
+.delete-button {
+    background-color: rgb(204, 7, 7);
+    color: white;
 }

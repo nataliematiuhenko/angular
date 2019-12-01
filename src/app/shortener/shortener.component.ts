@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ShortenerApiService } from '../shortener-api.service';
 import { StorageService } from '../storage.service';
 import { Shortening } from '../models/shortening-response.interface';
-
+import { NgxSpinnerService } from "ngx-spinner";
+ 
 @Component({
   selector: 'app-shortener',
   templateUrl: './shortener.component.html',
@@ -12,18 +13,14 @@ import { Shortening } from '../models/shortening-response.interface';
 export class ShortenerComponent implements OnInit {
   url = '';
   name = '';
+  filter : string;
   shortenings: Shortening[] = [];
 
   constructor(
     private shortAPI: ShortenerApiService,
     private storageService: StorageService,
-
+    private spinner: NgxSpinnerService
   ) { }
-
-  onReset() {
-    localStorage.clear();
-    this.updateShortenings();
-  }
 
   ngOnInit() {
     this.updateShortenings();
@@ -31,10 +28,12 @@ export class ShortenerComponent implements OnInit {
   
   onSubmit() {
 
-    if (!this.url) {
-      return;
+    if (!this.url || !this.name) {
+      alert("We need both field to shorten the URL for you");
     }
     
+
+    this.spinner.show();
     let shortName = this.name;
 
     this.shortAPI.shortenUrl(this.url).subscribe((response) => {
@@ -43,21 +42,25 @@ export class ShortenerComponent implements OnInit {
 
       this.storageService.saveShortening(response.result);
       this.updateShortenings();
-      console.log(this.storageService.getSingleShortening(+response.result.id))
+      this.spinner.hide();
     });
 
   }
-
-  onDelete(id : number) {
     
+  updateShortenings() {
+    this.shortenings = this.storageService.getShortenings();
+  }
+
+  onDelete(shortId: number) {
     if (confirm("Do you really want to delete this shortening ?")) {
-      let requestedItem = this.shortenings.find(el => el.id);
-      this.storageService.deleteItem(+requestedItem.id);
-      this.updateShortenings();
+      let requestedId = this.shortenings.find(el => +el.id == shortId).id;
+     this.storageService.deleteItem(requestedId)
+     this.updateShortenings();
     }
   }
 
-  updateShortenings() {
-    this.shortenings = this.storageService.getShortenings();
+  onReset() {
+    localStorage.clear();
+    this.updateShortenings();
   }
 }

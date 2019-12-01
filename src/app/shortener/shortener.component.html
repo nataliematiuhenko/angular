@@ -1,20 +1,23 @@
-<h1>Shortener</h1>
-
-<div>
-  <input type="text" placeholder="Name" [(ngModel)]='name'>
-  <input type="text" placeholder="URL" [(ngModel)]='url'>
-  <button (click)= "onSubmit()" >Shorten</button>
+<div class="header-reset">
+  <h1>Shortener</h1>
+  <button (click)="onReset()">Reset</button>
 </div>
 
-
-<button (click)="onReset()">Reset</button>
+<div>
+  <br>
+  <input type="text" placeholder="Name" [(ngModel)]='name' required>
+  <input type="text" placeholder="URL" [(ngModel)]='url' required>
+  <button (click)= "onSubmit()" >Shorten</button>
+</div>
+<br>
+<input class="search" type="text" placeholder="Search for a shortening here..." [(ngModel)]='searchTerm'>
 
 <ul>
-  <li *ngFor="let short of shortenings" class="card">
+  <li *ngFor="let short of shortenings | filter:searchTerm" class="card">
       {{ short.name }}
     <div class="buttons">
       <button routerLink ='/shortener/{{short.id}}'>View details</button>
-      <button (click)="onDelete()">Delete</button>
+      <button class="delete-button" (click)="onDelete(short.id)">Delete</button>
     </div>
   </li>
 </ul>

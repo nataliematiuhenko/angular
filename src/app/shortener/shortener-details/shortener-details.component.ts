@@ -27,7 +27,7 @@ export class ShortenerDetailsComponent implements OnInit {
   onDelete(id : string) {
   
     if (confirm("Do you really want to delete this shortening ?")) {
-       this.storageService.deleteItem(+id);
+      this.storageService.deleteItem(id);
       this.goBack();
     }
   }
