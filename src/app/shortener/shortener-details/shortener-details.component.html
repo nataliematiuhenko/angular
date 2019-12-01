@@ -2,10 +2,11 @@
     <div class="form-container">
         <div class="details-header">
             <h1>{{this.short.name}}</h1>
-            <button (click)="onDelete()">Delete</button>
-            <button (click)="goBack()">Back</button>
+            <div class="buttons">
+                <button (click)="goBack()">Back</button>
+                <button class = "delete-button" (click)="onDelete()">Delete</button>
+            </div>
         </div>
-    
         <ul>
             
             <li>Original Link: <a href= {{this.short.original_link}}>{{this.short.original_link}}</a></li>

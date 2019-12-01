@@ -1,3 +1,9 @@
+.header-reset {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 ul li{
     display: flex;
     flex-flow: row nowrap;
@@ -6,10 +12,11 @@ ul li{
     font-size: larger;
 }
 
-.buttons button {
+button, input {
     margin: 5px;
 }
 
-input {
-    margin:0 10px 10px 0;
+.delete-button {
+    background-color: rgb(204, 7, 7);
+    color: white;
 }
